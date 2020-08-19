@@ -1,10 +1,13 @@
 package model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -22,11 +25,13 @@ public class Produit {
 	@Column(name = "NOM", length = 300, nullable = false, unique = true)
 	private String nomprod;
 	
+	@OneToMany
 	@Column(name = "id_cat", length = 300, nullable = false, unique = true)
-	private Categories id_categorie;
+	private List <Categories> id_categorie;
 	
+	@OneToMany
 	@Column(name = "id_mar", length = 300, nullable = false, unique = true)
-	private Marques id_marque;
+	private List <Marques> id_marque;
 
 	@Column(name = "GRADENUTRI", length = 100, nullable = true, unique = true)
 	private String gradenutri;
@@ -104,5 +109,242 @@ public class Produit {
 	public Produit() {
 
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getNomprod() {
+		return nomprod;
+	}
+
+	public void setNomprod(String nomprod) {
+		this.nomprod = nomprod;
+	}
+
+	public Categories getId_categorie() {
+		return id_categorie;
+	}
+
+	public void setId_categorie(Categories id_categorie) {
+		this.id_categorie = id_categorie;
+	}
+
+	public Marques getId_marque() {
+		return id_marque;
+	}
+
+	public void setId_marque(Marques id_marque) {
+		this.id_marque = id_marque;
+	}
+
+	public String getGradenutri() {
+		return gradenutri;
+	}
+
+	public void setGradenutri(String gradenutri) {
+		this.gradenutri = gradenutri;
+	}
+
+	public double getEnergie() {
+		return energie;
+	}
+
+	public void setEnergie(double energie) {
+		this.energie = energie;
+	}
+
+	public double getGraisse() {
+		return graisse;
+	}
+
+	public void setGraisse(double graisse) {
+		this.graisse = graisse;
+	}
+
+	public double getSucre() {
+		return sucre;
+	}
+
+	public void setSucre(double sucre) {
+		this.sucre = sucre;
+	}
+
+	public double getFibres() {
+		return fibres;
+	}
+
+	public void setFibres(double fibres) {
+		this.fibres = fibres;
+	}
+
+	public double getProteines() {
+		return proteines;
+	}
+
+	public void setProteines(double proteines) {
+		this.proteines = proteines;
+	}
+
+	public double getSel() {
+		return sel;
+	}
+
+	public void setSel(double sel) {
+		this.sel = sel;
+	}
+
+	public double getVitA() {
+		return vitA;
+	}
+
+	public void setVitA(double vitA) {
+		this.vitA = vitA;
+	}
+
+	public double getVitD() {
+		return vitD;
+	}
+
+	public void setVitD(double vitD) {
+		this.vitD = vitD;
+	}
+
+	public double getVitE() {
+		return vitE;
+	}
+
+	public void setVitE(double vitE) {
+		this.vitE = vitE;
+	}
+
+	public double getVitK() {
+		return vitK;
+	}
+
+	public void setVitK(double vitK) {
+		this.vitK = vitK;
+	}
+
+	public double getVitC() {
+		return vitC;
+	}
+
+	public void setVitC(double vitC) {
+		this.vitC = vitC;
+	}
+
+	public double getVitB1() {
+		return vitB1;
+	}
+
+	public void setVitB1(double vitB1) {
+		this.vitB1 = vitB1;
+	}
+
+	public double getVitB2() {
+		return vitB2;
+	}
+
+	public void setVitB2(double vitB2) {
+		this.vitB2 = vitB2;
+	}
+
+	public double getVitPP() {
+		return vitPP;
+	}
+
+	public void setVitPP(double vitPP) {
+		this.vitPP = vitPP;
+	}
+
+	public double getVitB6() {
+		return vitB6;
+	}
+
+	public void setVitB6(double vitB6) {
+		this.vitB6 = vitB6;
+	}
+
+	public double getVitB9() {
+		return vitB9;
+	}
+
+	public void setVitB9(double vitB9) {
+		this.vitB9 = vitB9;
+	}
+
+	public double getVitB12() {
+		return vitB12;
+	}
+
+	public void setVitB12(double vitB12) {
+		this.vitB12 = vitB12;
+	}
+
+	public double getCalcium() {
+		return calcium;
+	}
+
+	public void setCalcium(double calcium) {
+		this.calcium = calcium;
+	}
+
+	public double getMagnesium() {
+		return magnesium;
+	}
+
+	public void setMagnesium(double magnesium) {
+		this.magnesium = magnesium;
+	}
+
+	public double getIron() {
+		return iron;
+	}
+
+	public void setIron(double iron) {
+		this.iron = iron;
+	}
+
+	public double getFer() {
+		return fer;
+	}
+
+	public void setFer(double fer) {
+		this.fer = fer;
+	}
+
+	public double getBetacarotene() {
+		return betacarotene;
+	}
+
+	public void setBetacarotene(double betacarotene) {
+		this.betacarotene = betacarotene;
+	}
+
+	public String getPresencehuiledepalme() {
+		return presencehuiledepalme;
+	}
+
+	public void setPresencehuiledepalme(String presencehuiledepalme) {
+		this.presencehuiledepalme = presencehuiledepalme;
+	}
+
+	@Override
+	public String toString() {
+		return "Produit [id=" + id + ", nomprod=" + nomprod + ", id_categorie=" + id_categorie + ", id_marque="
+				+ id_marque + ", gradenutri=" + gradenutri + ", energie=" + energie + ", graisse=" + graisse
+				+ ", sucre=" + sucre + ", fibres=" + fibres + ", proteines=" + proteines + ", sel=" + sel + ", vitA="
+				+ vitA + ", vitD=" + vitD + ", vitE=" + vitE + ", vitK=" + vitK + ", vitC=" + vitC + ", vitB1=" + vitB1
+				+ ", vitB2=" + vitB2 + ", vitPP=" + vitPP + ", vitB6=" + vitB6 + ", vitB9=" + vitB9 + ", vitB12="
+				+ vitB12 + ", calcium=" + calcium + ", magnesium=" + magnesium + ", iron=" + iron + ", fer=" + fer
+				+ ", betacarotene=" + betacarotene + ", presencehuiledepalme=" + presencehuiledepalme + "]";
+	}
+	
+	
 
 }

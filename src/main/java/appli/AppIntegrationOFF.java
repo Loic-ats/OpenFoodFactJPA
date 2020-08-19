@@ -9,12 +9,16 @@ import org.apache.commons.io.FileUtils;
 
 import model.Additifs;
 import model.Allergenes;
+import model.Categories;
 import model.Ingredients;
 import model.Marques;
+import model.Produit;
 import traitementDao.DaoAdditifs;
 import traitementDao.DaoAllergenes;
+import traitementDao.DaoCategories;
 import traitementDao.DaoIngredients;
 import traitementDao.DaoMarques;
+import traitementDao.DaoProduit;
 import utils.CreationList;
 import utils.SupDoublon;
 
@@ -22,11 +26,13 @@ public class AppIntegrationOFF {
 
 	public static void main(String[] args) {
 
-		// DaoMarques daomar = new DaoMarques();
-		//DaoAllergenes daoall = new DaoAllergenes();
-		//DaoAdditifs daoadd = new DaoAdditifs ();
-		DaoIngredients daoing = new DaoIngredients ();
 		
+		// DaoAllergenes daoall = new DaoAllergenes();
+		// DaoAdditifs daoadd = new DaoAdditifs ();
+		// DaoIngredients daoing = new DaoIngredients ();
+		DaoCategories daocat = new DaoCategories();
+		DaoMarques daomar = new DaoMarques();
+		DaoProduit daoprod = new DaoProduit();
 
 		try {
 			File file = new File("E:\\Developpements\\Projets\\Donnees\\openFoodFacts.csv");
@@ -41,13 +47,16 @@ public class AppIntegrationOFF {
 				String categories = morceaux[0];
 				String marques = morceaux[1];
 				String produit = morceaux[2];
-				String nutritionGradeFr = morceaux[3];
+				String gradenutri = morceaux[3];
 				String ingredient = morceaux[4];
-				String energie100g = morceaux[5];
-				String graisse100g = morceaux[6];
-				String sucres100g = morceaux[7];
+				
+				double energie = Double.parseDouble(morceaux[5]);
+				double graisse = Double.parseDouble(morceaux[6]);
+				double sucre = Double.parseDouble(morceaux[7]);
+				double proteines = Double.parseDouble(morceaux[9]);
+				
 				String fibres100g = morceaux[8];
-				String proteines100g = morceaux[9];
+				
 				String sel100g = morceaux[10];
 				String vitA100g = morceaux[11];
 				String vitD100g = morceaux[12];
@@ -69,22 +78,29 @@ public class AppIntegrationOFF {
 				String Additif = morceaux[28];
 				String Allergene = morceaux[29];
 
-				// Marques m = new Marques();
-				// daomar.insertMarques(m, marques);
-				
-				//Allergenes a = new Allergenes();
-				//daoall.insertAllergene(a, Allergene);
-				
-				//Additifs add = new Additifs ();
-				//daoadd.insertAdditifs(add, Additif);
-				
-				Ingredients ing = new Ingredients ();
-				daoing.insertIngredient(ing, ingredient);
+				// Allergenes a = new Allergenes();
+				// daoall.insertAllergene(a, Allergene);
 
+				// Additifs add = new Additifs ();
+				// daoadd.insertAdditifs(add, Additif);
+
+				// Ingredients ing = new Ingredients ();
+				// daoing.insertIngredient(ing, ingredient);
+
+				 Marques m = new Marques();
+				daomar.insertMarques(m, marques);
+
+				Categories c = new Categories();
+				daocat.insertCategories(c, categories);
+				
+				Produit p = new Produit ();
+				daoprod.insertProduits(p, produit, gradenutri, energie, graisse, sucre, proteines);
+				
+				
+				
 
 			}
 
-			
 			System.out.println("Nombre de lignes :" + lignes.size());
 
 		} catch (IOException e) {
