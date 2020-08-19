@@ -17,7 +17,7 @@ public class Allergenes {
 			@GeneratedValue(strategy = GenerationType.IDENTITY)
 			private int id;
 
-			@Column(name = "NOM", length = 250, nullable = false, unique = true)
+			@Column(name = "NOM", length = 100, nullable = false, unique = true)
 			private String nomall;
 			
 	//Constructeur sans arguement de l'entity allergenes

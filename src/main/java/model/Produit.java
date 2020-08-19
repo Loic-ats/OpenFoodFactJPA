@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,8 +21,12 @@ public class Produit {
 
 	@Column(name = "NOM", length = 300, nullable = false, unique = true)
 	private String nomprod;
-
-	// Rajouter id_cat et id_mar
+	
+	@Column(name = "id_cat", length = 300, nullable = false, unique = true)
+	private Categories id_categorie;
+	
+	@Column(name = "id_mar", length = 300, nullable = false, unique = true)
+	private Marques id_marque;
 
 	@Column(name = "GRADENUTRI", length = 100, nullable = true, unique = true)
 	private String gradenutri;
@@ -93,7 +98,7 @@ public class Produit {
 	private double betacarotene;
 
 	@Column(name = "PRESENCEHUILEDEPALME", length = 100, nullable = true, unique = true)
-	private boolean presencehuiledepalme;
+	private String presencehuiledepalme;
 
 	// Constructeur sans parametre de l'entity produit
 	public Produit() {

@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -15,22 +16,25 @@ public class Categories {
 	// id categories auto-incrementé
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private int id_Categorie;
 
 	@Column(name = "NOM", length = 250, nullable = false, unique = true)
 	private String nomcat;
-
+	
+	@OneToMany (mappedBy = "id-categorie")
+	private Produit produits;
+	
 	// Constructeur sans arguement de l'entity categories
 	public Categories() {
 
 	}
 
 	public int getId() {
-		return id;
+		return id_Categorie;
 	}
 
 	public void setId(int id) {
-		this.id = id;
+		this.id_Categorie = id;
 	}
 
 	public String getNom() {
@@ -43,7 +47,7 @@ public class Categories {
 
 	@Override
 	public String toString() {
-		return "Categories [id=" + id + ", nom=" + nomcat + "]";
+		return "Categories [id=" + id_Categorie + ", nom=" + nomcat + "]";
 	}
 
 }

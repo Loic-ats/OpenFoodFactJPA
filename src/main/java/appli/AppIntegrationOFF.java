@@ -2,12 +2,31 @@ package appli;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.commons.io.FileUtils;
+
+import model.Additifs;
+import model.Allergenes;
+import model.Ingredients;
+import model.Marques;
+import traitementDao.DaoAdditifs;
+import traitementDao.DaoAllergenes;
+import traitementDao.DaoIngredients;
+import traitementDao.DaoMarques;
+import utils.CreationList;
+import utils.SupDoublon;
 
 public class AppIntegrationOFF {
 
 	public static void main(String[] args) {
+
+		// DaoMarques daomar = new DaoMarques();
+		//DaoAllergenes daoall = new DaoAllergenes();
+		//DaoAdditifs daoadd = new DaoAdditifs ();
+		DaoIngredients daoing = new DaoIngredients ();
+		
 
 		try {
 			File file = new File("E:\\Developpements\\Projets\\Donnees\\openFoodFacts.csv");
@@ -21,7 +40,7 @@ public class AppIntegrationOFF {
 
 				String categories = morceaux[0];
 				String marques = morceaux[1];
-				String nom = morceaux[2];
+				String produit = morceaux[2];
 				String nutritionGradeFr = morceaux[3];
 				String ingredient = morceaux[4];
 				String energie100g = morceaux[5];
@@ -48,12 +67,24 @@ public class AppIntegrationOFF {
 				String betaCarotene100g = morceaux[26];
 				String presenceHuilePalme = morceaux[27];
 				String Additif = morceaux[28];
-				String Allergerne = morceaux[29];
+				String Allergene = morceaux[29];
 
-				System.out.println(marques);
+				// Marques m = new Marques();
+				// daomar.insertMarques(m, marques);
+				
+				//Allergenes a = new Allergenes();
+				//daoall.insertAllergene(a, Allergene);
+				
+				//Additifs add = new Additifs ();
+				//daoadd.insertAdditifs(add, Additif);
+				
+				Ingredients ing = new Ingredients ();
+				daoing.insertIngredient(ing, ingredient);
+
 
 			}
 
+			
 			System.out.println("Nombre de lignes :" + lignes.size());
 
 		} catch (IOException e) {
