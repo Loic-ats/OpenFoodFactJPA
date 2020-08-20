@@ -32,7 +32,7 @@ public class DaoCategories {
 			// factory
 
 			em.getTransaction().commit();
-			//em.close();
+			em.close();
 			//factory.close();
 
 		}

@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -7,32 +8,47 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "Produit")
 public class Produit {
 
 	// id produit auto-incrementé
-	//Générer getter/setter et to string
-	
+	// Générer getter/setter et to string
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	@Column(name = "NOM", length = 300, nullable = false, unique = true)
 	private String nomprod;
-	
-	@OneToMany
-	@Column(name = "id_cat", length = 300, nullable = false, unique = true)
-	private List <Categories> id_categorie;
-	
-	@OneToMany
-	@Column(name = "id_mar", length = 300, nullable = false, unique = true)
-	private List <Marques> id_marque;
 
+	@ManyToOne
+	@JoinColumn(name = "id_cat", nullable = false, unique = true)
+	private Categories categorie;
+
+	@ManyToOne
+	@JoinColumn(name = "id_mar", nullable = false, unique = true)
+	private Marques marque;
+
+	@ManyToMany
+	@JoinTable(name = "jointure_produit_ingredients", joinColumns = @JoinColumn(name = "id_prd"), inverseJoinColumns = @JoinColumn(name = "id_ing"))
+	private List<Ingredients> listingredients = new ArrayList<Ingredients> ();
+
+	@ManyToMany
+	@JoinTable (name = "jointure_produit_all", joinColumns = @JoinColumn (name = "id_prd"),inverseJoinColumns = @JoinColumn (name = "id_all"))
+	private List<Allergenes> listallergene = new ArrayList<Allergenes>();
+	
+	@ManyToMany
+	@JoinTable (name = "jointure_produit_add", joinColumns = @JoinColumn (name ="id_prd" ),inverseJoinColumns = @JoinColumn (name = "id_add"))
+	private List<Additifs> listadditif = new ArrayList<Additifs> (); 
+			
 	@Column(name = "GRADENUTRI", length = 100, nullable = true, unique = true)
 	private String gradenutri;
 
@@ -126,20 +142,28 @@ public class Produit {
 		this.nomprod = nomprod;
 	}
 
-	public Categories getId_categorie() {
-		return id_categorie;
+	public Categories getCategorie() {
+		return categorie;
 	}
 
-	public void setId_categorie(Categories id_categorie) {
-		this.id_categorie = id_categorie;
+	public void setCategorie(Categories categorie) {
+		this.categorie = categorie;
 	}
 
-	public Marques getId_marque() {
-		return id_marque;
+	public Marques getMarque() {
+		return marque;
 	}
 
-	public void setId_marque(Marques id_marque) {
-		this.id_marque = id_marque;
+	public void setMarque(Marques marque) {
+		this.marque = marque;
+	}
+
+	public List<Ingredients> getListingredients() {
+		return listingredients;
+	}
+
+	public void setListingredients(List<Ingredients> listingredients) {
+		this.listingredients = listingredients;
 	}
 
 	public String getGradenutri() {
@@ -334,17 +358,31 @@ public class Produit {
 		this.presencehuiledepalme = presencehuiledepalme;
 	}
 
+	public List<Allergenes> getListallergene() {
+		return listallergene;
+	}
+
+	public void setListallergene(List<Allergenes> listallergene) {
+		this.listallergene = listallergene;
+	}
+
+	public List<Additifs> getListadditif() {
+		return listadditif;
+	}
+
+	public void setListadditif(List<Additifs> listadditif) {
+		this.listadditif = listadditif;
+	}
+
 	@Override
 	public String toString() {
-		return "Produit [id=" + id + ", nomprod=" + nomprod + ", id_categorie=" + id_categorie + ", id_marque="
-				+ id_marque + ", gradenutri=" + gradenutri + ", energie=" + energie + ", graisse=" + graisse
-				+ ", sucre=" + sucre + ", fibres=" + fibres + ", proteines=" + proteines + ", sel=" + sel + ", vitA="
-				+ vitA + ", vitD=" + vitD + ", vitE=" + vitE + ", vitK=" + vitK + ", vitC=" + vitC + ", vitB1=" + vitB1
-				+ ", vitB2=" + vitB2 + ", vitPP=" + vitPP + ", vitB6=" + vitB6 + ", vitB9=" + vitB9 + ", vitB12="
-				+ vitB12 + ", calcium=" + calcium + ", magnesium=" + magnesium + ", iron=" + iron + ", fer=" + fer
-				+ ", betacarotene=" + betacarotene + ", presencehuiledepalme=" + presencehuiledepalme + "]";
+		return "Produit [id=" + id + ", nomprod=" + nomprod + ", gradenutri=" + gradenutri + ", energie=" + energie
+				+ ", graisse=" + graisse + ", sucre=" + sucre + ", fibres=" + fibres + ", proteines=" + proteines
+				+ ", sel=" + sel + ", vitA=" + vitA + ", vitD=" + vitD + ", vitE=" + vitE + ", vitK=" + vitK + ", vitC="
+				+ vitC + ", vitB1=" + vitB1 + ", vitB2=" + vitB2 + ", vitPP=" + vitPP + ", vitB6=" + vitB6 + ", vitB9="
+				+ vitB9 + ", vitB12=" + vitB12 + ", calcium=" + calcium + ", magnesium=" + magnesium + ", iron=" + iron
+				+ ", fer=" + fer + ", betacarotene=" + betacarotene + ", presencehuiledepalme=" + presencehuiledepalme
+				+ "]";
 	}
-	
-	
 
 }

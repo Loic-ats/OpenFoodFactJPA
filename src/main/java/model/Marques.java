@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,14 +19,20 @@ public class Marques {
 
 	@Column(name = "NOM", length = 250, nullable = false, unique = true)
 	private String nommarq;
-
-	@ManyToOne (mappedBy = "id-categorie")
-	private Produit produits;
 	
 	// Constructeur sans argumeent de l'entity marques
 	public Marques() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+
+	public Marques(String nommarq) {
+		super();
+		this.nommarq = nommarq;
+	}
+
+
 
 	public int getId() {
 		return id_marques;

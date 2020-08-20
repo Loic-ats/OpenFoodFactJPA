@@ -5,8 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,9 +19,6 @@ public class Categories {
 
 	@Column(name = "NOM", length = 250, nullable = false, unique = true)
 	private String nomcat;
-	
-	@ManyToOne (mappedBy = "id-categorie")
-	private Produit produits;
 	
 	// Constructeur sans arguement de l'entity categories
 	public Categories() {

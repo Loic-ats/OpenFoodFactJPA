@@ -1,10 +1,14 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -13,17 +17,29 @@ import javax.persistence.Table;
 public class Additifs {
 
 	// id additifs auto-incrementé
-		@Id
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		private int id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 
-		@Column(name = "NOM", length = 250, nullable = false, unique = true)
-		private String nomadd;
-		
-	//Constructeur sans arguement de l'entity Additifs	
+	@Column(name = "NOM", length = 250, nullable = false, unique = true)
+	private String nomadd;
+
+	@OneToMany(mappedBy = "listadditif")
+	private List<Produit> listproduit = new ArrayList<Produit>();
+
+	// Constructeur sans arguement de l'entity Additifs
 	public Additifs() {
-		
+
 	}
+	
+	
+
+	public Additifs(String nomadd) {
+		super();
+		this.nomadd = nomadd;
+	}
+
+
 
 	public int getId() {
 		return id;

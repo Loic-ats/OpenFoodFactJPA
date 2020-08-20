@@ -19,6 +19,7 @@ import traitementDao.DaoCategories;
 import traitementDao.DaoIngredients;
 import traitementDao.DaoMarques;
 import traitementDao.DaoProduit;
+import utils.ConversionDouble;
 import utils.CreationList;
 import utils.SupDoublon;
 
@@ -26,13 +27,17 @@ public class AppIntegrationOFF {
 
 	public static void main(String[] args) {
 
-		
-		// DaoAllergenes daoall = new DaoAllergenes();
-		// DaoAdditifs daoadd = new DaoAdditifs ();
-		// DaoIngredients daoing = new DaoIngredients ();
-		DaoCategories daocat = new DaoCategories();
+		DaoAllergenes daoAll = new DaoAllergenes();
+		DaoAdditifs daoadd = new DaoAdditifs();
+		DaoIngredients daoing = new DaoIngredients();
+		// DaoCategories daocat = new DaoCategories();
 		DaoMarques daomar = new DaoMarques();
-		DaoProduit daoprod = new DaoProduit();
+		// DaoProduit daoprod = new DaoProduit();
+
+		List<String> listAllergene = new ArrayList<String>();
+		List<String> listAdditifs = new ArrayList<String>();
+		List<String> listIngredient = new ArrayList<String>();
+		List<String> listMarque = new ArrayList<String>();
 
 		try {
 			File file = new File("E:\\Developpements\\Projets\\Donnees\\openFoodFacts.csv");
@@ -49,37 +54,32 @@ public class AppIntegrationOFF {
 				String produit = morceaux[2];
 				String gradenutri = morceaux[3];
 				String ingredient = morceaux[4];
-				
-				double energie = Double.parseDouble(morceaux[5]);
-				double graisse = Double.parseDouble(morceaux[6]);
-				double sucre = Double.parseDouble(morceaux[7]);
-				double proteines = Double.parseDouble(morceaux[9]);
-				
-				String fibres100g = morceaux[8];
-				
-				String sel100g = morceaux[10];
-				String vitA100g = morceaux[11];
-				String vitD100g = morceaux[12];
-				String vitE100g = morceaux[13];
-				String vitK100g = morceaux[14];
-				String vitC100g = morceaux[15];
-				String vitB1100g = morceaux[16];
-				String vitB2100g = morceaux[17];
-				String vitPP100g = morceaux[18];
-				String vitB6100g = morceaux[19];
-				String vitB9100g = morceaux[20];
-				String vitB12100g = morceaux[21];
-				String calcium100g = morceaux[22];
-				String magnesium100g = morceaux[23];
-				String iron100g = morceaux[24];
-				String fer100g = morceaux[25];
-				String betaCarotene100g = morceaux[26];
-				String presenceHuilePalme = morceaux[27];
+
+				double energie = ConversionDouble.stringToDouble(morceaux[5]);
+				double graisse = ConversionDouble.stringToDouble(morceaux[6]);
+				double sucre = ConversionDouble.stringToDouble(morceaux[7]);
+				double proteines = ConversionDouble.stringToDouble(morceaux[9]);
+				double fibres100g = ConversionDouble.stringToDouble(morceaux[8]);
+				double sel100g = ConversionDouble.stringToDouble(morceaux[10]);
+				double vitA100g = ConversionDouble.stringToDouble(morceaux[11]);
+				double vitD100g = ConversionDouble.stringToDouble(morceaux[12]);
+				double vitE100g = ConversionDouble.stringToDouble(morceaux[13]);
+				double vitK100g = ConversionDouble.stringToDouble(morceaux[14]);
+				double vitC100g = ConversionDouble.stringToDouble(morceaux[15]);
+				double vitB1100g = ConversionDouble.stringToDouble(morceaux[16]);
+				double vitB2100g = ConversionDouble.stringToDouble(morceaux[17]);
+				double vitPP100g = ConversionDouble.stringToDouble(morceaux[18]);
+				double vitB6100g = ConversionDouble.stringToDouble(morceaux[19]);
+				double vitB9100g = ConversionDouble.stringToDouble(morceaux[20]);
+				double vitB12100g = ConversionDouble.stringToDouble(morceaux[21]);
+				double calcium100g = ConversionDouble.stringToDouble(morceaux[22]);
+				double magnesium100g = ConversionDouble.stringToDouble(morceaux[23]);
+				double iron100g = ConversionDouble.stringToDouble(morceaux[24]);
+				double fer100g = ConversionDouble.stringToDouble(morceaux[25]);
+				double betaCarotene100g = ConversionDouble.stringToDouble(morceaux[26]);
+				double presenceHuilePalme = ConversionDouble.stringToDouble(morceaux[27]);
 				String Additif = morceaux[28];
 				String Allergene = morceaux[29];
-
-				// Allergenes a = new Allergenes();
-				// daoall.insertAllergene(a, Allergene);
 
 				// Additifs add = new Additifs ();
 				// daoadd.insertAdditifs(add, Additif);
@@ -87,21 +87,36 @@ public class AppIntegrationOFF {
 				// Ingredients ing = new Ingredients ();
 				// daoing.insertIngredient(ing, ingredient);
 
-				 Marques m = new Marques();
-				daomar.insertMarques(m, marques);
+				// Marques m = new Marques();
+				// daomar.insertMarques(m, marques);
 
-				Categories c = new Categories();
-				daocat.insertCategories(c, categories);
-				
-				Produit p = new Produit ();
-				daoprod.insertProduits(p, produit, gradenutri, energie, graisse, sucre, proteines);
-				
-				
-				
+				// Categories c = new Categories();
+				// daocat.insertCategories(c, categories);
 
+				// Produit p = new Produit ();
+				// daoprod.insertProduits(p, produit);
+
+				listAllergene.add(Allergene);
+				listAdditifs.add(Additif);
+				listIngredient.add(ingredient);
+				listMarque.add(marques);
 			}
 
-			System.out.println("Nombre de lignes :" + lignes.size());
+			// List<Allergenes> listSansDoublon =
+			// SupDoublon.SupprimDoublonAllergnes(listAllergene);
+			// daoAll.insertAllergene(listSansDoublon);
+
+			//List<Additifs> listSansDoublonAdditifs = SupDoublon.SupprimDoublonAdditifs(listAdditifs);
+			//daoadd.insertAdditif(listSansDoublonAdditifs);
+
+			// List<Ingredients> listSansDoublonIngredient =
+			// SupDoublon.SupprimDoublonIngredients(listIngredient);
+			// daoing.insertIngredient(listSansDoublonIngredient);
+			
+			List<Marques> listSansDoublonMarques = SupDoublon.SupprimDoublonMarques(listMarque);
+			daomar.insertMarque(listSansDoublonMarques);
+
+			// System.out.println("Nombre de lignes :" + lignes.size());
 
 		} catch (IOException e) {
 
