@@ -1,39 +1,40 @@
 package traitementDao;
 
+import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
 import model.Categories;
-
 
 public class DaoCategories {
 
-	private EntityManagerFactory factory = Persistence.createEntityManagerFactory("connection");
-
-	public void insertCategories(Categories categories, String morceaux) {
-
-		// On créer un canal de communication em en utilisant la factory
-
-		EntityManager em = factory.createEntityManager();
+	public void insertCategorie(EntityManager em, List<Categories> listCategories) {
 
 		// Si le canal de communication est différent de nul on peut ajouter un livre
 		if (em != null) {
 
-			categories.setNom(morceaux);
-			
-			// J'ouvre une transaction avec la BDD via mon EntityManager
-			em.getTransaction().begin();
+			/**
+			 *
+			 * On parcours la liste avec une boucle for On ajoute chaque éléments au fur et
+			 * a mesure dans la BDD
+			 * 
+			 */
 
-			// J'ajoute dans la base mon nouveau livre
-			em.persist(categories);
+			for (Categories categories : listCategories) {
 
-			// Je commite et je ferme la transaction, le cannal de communication et la
-			// factory
+				// J'ouvre une transaction avec la BDD via mon EntityManager
+				em.getTransaction().begin();
 
-			em.getTransaction().commit();
+				// J'ajoute dans la base mon nouveau allergene
+				em.persist(categories);
+
+				// On commite
+
+				em.getTransaction().commit();
+
+			}
+
+			// On ferme la transaction, le cannal de communication
+
 			em.close();
-			//factory.close();
 
 		}
 

@@ -3,21 +3,12 @@ package traitementDao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
 import model.Additifs;
 
 
 public class DaoAdditifs {
 
-	private EntityManagerFactory factory = Persistence.createEntityManagerFactory("connection");
-
-	public void insertAdditif(List<Additifs>listAdditif) {
-
-		// On créer un canal de communication em en utilisant la factory
-
-		EntityManager em = factory.createEntityManager();
+	public void insertAdditif(EntityManager em, List<Additifs>listAdditif) {
 
 		// Si le canal de communication est différent de nul on peut ajouter un livre
 		if (em != null) {

@@ -1,22 +1,15 @@
 package traitementDao;
-
 import java.util.List;
-
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 import model.Marques;
 
 public class DaoMarques {
 
-	private EntityManagerFactory factory = Persistence.createEntityManagerFactory("connection");
+	public void insertMarque(EntityManager em, List<Marques> listMarques) {
 
-	public void insertMarque(List<Marques> listMarques) {
 
 		// On créer un canal de communication em en utilisant la factory
-
-		EntityManager em = factory.createEntityManager();
 
 		// Si le canal de communication est différent de nul on peut ajouter un livre
 		if (em != null) {
@@ -46,8 +39,10 @@ public class DaoMarques {
 
 			em.close();
 
+			
 		}
 
+	
 	}
 
 }

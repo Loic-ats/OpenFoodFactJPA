@@ -8,6 +8,7 @@ import java.util.Set;
 
 import model.Additifs;
 import model.Allergenes;
+import model.Categories;
 import model.Ingredients;
 import model.Marques;
 import model.Produit;
@@ -108,20 +109,18 @@ public class SupDoublon {
 
 		return listeAdditifs;
 	}
-	
+
 	public static List<Marques> SupprimDoublonMarques(List<String> listavecdoublon) {
 
 		Set<String> mySet = new HashSet<String>();
 		List<Marques> listeAdditifs = new ArrayList<Marques>();
-		
 
-			for (int i = 0; i < listavecdoublon.size(); i++) {
+		for (int i = 0; i < listavecdoublon.size(); i++) {
 
-				String all = listavecdoublon.get(i);
-				
+			String all = listavecdoublon.get(i);
 
-				mySet.add(all);
-			}
+			mySet.add(all);
+		}
 
 		for (String nomMarque : mySet) {
 
@@ -135,6 +134,58 @@ public class SupDoublon {
 		}
 
 		return listeAdditifs;
+	}
+
+	public static List<Categories> SupprimDoublonCategories(List<String> listavecdoublon) {
+
+		Set<String> mySet = new HashSet<String>();
+		List<Categories> listeAdditifs = new ArrayList<Categories>();
+
+		for (int i = 0; i < listavecdoublon.size(); i++) {
+
+			String all = listavecdoublon.get(i);
+
+			mySet.add(all);
+		}
+
+		for (String nomCategorie : mySet) {
+
+			if (!nomCategorie.isEmpty() || !nomCategorie.isBlank()) {
+
+				Categories categorie = new Categories(nomCategorie);
+
+				listeAdditifs.add(categorie);
+			}
+
+		}
+
+		return listeAdditifs;
+	}
+	
+	public static List<Produit> SupprimDoublonProduits(List<String> listavecdoublon) {
+
+		Set<String> mySet = new HashSet<String>();
+		List<Produit> listeProduits = new ArrayList<Produit>();
+
+		for (int i = 0; i < listavecdoublon.size(); i++) {
+
+			String all = listavecdoublon.get(i);
+
+			mySet.add(all);
+		}
+
+		for (String nomProduits : mySet) {
+
+			if (!nomProduits.isEmpty() || !nomProduits.isBlank()) {
+
+				Produit produit = new Produit(nomProduits);
+
+				listeProduits.add(produit);
+			}
+
+		}
+
+		return listeProduits;
 	}
 
 }

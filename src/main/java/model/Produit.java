@@ -13,6 +13,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import model.Categories;
 
 
 @Entity
@@ -124,6 +125,11 @@ public class Produit {
 	// Constructeur sans parametre de l'entity produit
 	public Produit() {
 
+	}
+	
+	public Produit(String nomprod) {
+		super();
+		this.nomprod = nomprod;
 	}
 
 	public int getId() {

@@ -1,15 +1,18 @@
-package traitementDao;
+package utils;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class DaoFactory {
+public class ComBBD {
 
-	public EntityManagerFactory getConnection() {
+	public static EntityManager getConnection() {
 		
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("connection");
 		
-		return factory;
+		EntityManager em = factory.createEntityManager();
+		
+		return em;
 		
 	}
 
