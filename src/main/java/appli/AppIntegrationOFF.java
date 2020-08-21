@@ -79,9 +79,7 @@ public class AppIntegrationOFF {
 				produit.setNomprod(morceaux[2]);
 				produit.setMarque(marque);
 				produit.setCategorie(categorie);
-
 				produit.setGradenutri(morceaux[3]);
-
 				produit.setEnergie(ConversionDouble.stringToDouble(morceaux[5]));
 				produit.setGraisse(ConversionDouble.stringToDouble(morceaux[6]));
 				produit.setSucre(ConversionDouble.stringToDouble(morceaux[7]));
